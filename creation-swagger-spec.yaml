@@ -1,0 +1,142 @@
+---
+swagger: '2.0'
+
+# Document metadata
+info:
+  version: "0.0.1"
+  title: Haplotype Frequencey Creation Service
+  description: Allows to create a
+
+# Describe paths here
+paths:
+  /hf:
+    get:
+      description: |
+        Create a new Haplotype Frequency.
+        Gets `HFCreationResponse` object which
+        has the `hfCreationMethodID` and `hfCreationCohortID`
+      parameters:
+        - name: HFCreationRequest
+          in: body
+          description: Haplotype Frequency Creation Data
+          required: true
+          schema:
+            $ref:  '#/definitions/HFCreationRequest'
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/HFCreationResponse'
+        500:
+          $ref: '#/responses/Standard500ErrorResponse'
+
+definitions:
+  HFCreationResponse:
+    title: HFCreationResponse
+    type: object
+    required:
+      - hfCreationMethodID
+      - hfCreationCohortID
+    properties:
+      hfCreationMethodID:
+        type: string
+        description: Reference to a method 
+      hfCreationCohortID:
+        type: string
+        description: References a cohort
+
+  HFCreationRequest:
+    title: HFCreationRequest
+    type: object
+    required:
+      - populationID
+    properties:
+      populationID:
+        type: string
+        description: Population Identifier. URI from Population DB
+      genotypeList:
+        $ref: '#/definitions/GenotypeList'
+      license:
+        type: string
+        description: License under which GT data is available
+      methodList:
+        $ref: '#/definitions/Methods'
+      cohortId:
+        type: string
+        description: Cohort Id
+      methodId:
+        type: string
+        description: Method Id
+
+  GenotypeList:
+    title: GenotypeList
+    type: array
+    description: List of Genotypes
+    items:
+      $ref: '#/definitions/Genotype'
+
+  Genotype:
+    title: Genotype
+    type: object
+    required:
+      - genotypeName
+    properties:
+      genotypeName:
+        type: string
+        description: Genotype Name
+      genotypingMethods:
+        title: GenotypingMethods
+        type: array
+        description: Additional Information on genotype
+        items:
+          $ref: '#/definitions/GenotypeMethod'
+
+  GenotypeMethod:
+    title: GenotypeMethod
+    type: object
+    properties:
+      methodData:
+        type: string
+        description: Genotyping Method Data
+      methodValue:
+        type: string
+        description: Genotyping Method Value
+
+  Methods:
+    title: Methods
+    type: array
+    description: List of Method
+    items:
+      $ref: '#/definitions/Method'
+
+  Method:
+    title: Method
+    type: object
+    description: Method Record
+    properties:
+      methodType:
+        type: string
+        description: Type of method
+      methodValue:
+        type: string
+        description: Value of method
+      methodComment:
+        type: string
+        description: Comment on method
+      methodReference:
+        type: string
+        description: To be used to refer to an external source
+
+  Error:
+    properties:
+     code:
+       type: string
+     message:
+       type: string
+
+responses:
+  Standard500ErrorResponse:
+    description: An unexpected error ocurred
+    schema:
+      $ref: '#/definitions/Error'
