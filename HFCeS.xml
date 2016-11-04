@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HFCS
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="HFCS.xsd">
+  <POP_ID>POP123</POP_ID>
+  <HFCeS_COHORT_ID>1</HFCeS_COHORT_ID>
+  <GT_Lic>GNU</GT_Lic>
+  <METHOD>
+    <HH2016>
+      <EM_ALGORITHM> Raten </EM_ALGORITHM>
+      <EM_ALGORITHM> Ratten </EM_ALGORITHM>
+
+    </HH2016>
+  </METHOD>
+</HFCS> 

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns="http://www.w3schools.com"
+	   elementFormDefault="qualified">
+  
+  
+  <xs:element name="COMMENT">
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element name="COM_TIME" type="xs:date"/>
+		<xs:element name="COM_USER" type="xs:integer"/>
+		
+		<xs:element name="COM_REF">
+		  <xs:complexType>
+			<xs:sequence>
+				<xs:element name="COM_REF_TARGET">
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element name="FREE_TEXT" type="xs:string"/>
+							<xs:element name="COHORT_ID" type="xs:integer"/>
+							<xs:element name="METHOD_ID" type="xs:integer"/>
+							<xs:element name="HF_ID" type="xs:integer"/>
+							<xs:element name="POP_ID" type="xs:integer"/>			
+						</xs:choice>
+					</xs:complexType>
+				</xs:element> 		
+				<xs:element name="COM_REF_ID" type="xs:integer"/>	      
+			</xs:sequence>      
+		  </xs:complexType>
+		</xs:element> 
+
+		<xs:element name="COM_LIST">
+		  <xs:complexType>
+			<xs:sequence>
+			  <xs:element name="COM_REC" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="COM_TEXT" type="xs:string"/>
+						<xs:element name="COM_REF_SPEC" type="xs:string"/>
+					</xs:sequence>      
+				</xs:complexType>
+			  </xs:element>     
+			</xs:sequence>      
+		  </xs:complexType>
+		</xs:element>
+
+
+      </xs:sequence>      
+    </xs:complexType>
+  </xs:element>      
+</xs:schema> 

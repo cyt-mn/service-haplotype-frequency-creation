@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns="http://www.w3schools.com"
+	   elementFormDefault="qualified">
+  
+  
+  <xs:element name="HFCeS">
+    <xs:complexType>
+      <xs:sequence>
+	
+		<xs:element name="POP_ID" type="xs:string"/>
+		
+		<xs:choice>
+		  <xs:element name="GT_List">
+			<xs:complexType>
+
+			  <xs:sequence>
+				<xs:element name="GTL">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="GTL_Name" type="xs:string"/>
+							<xs:element name="GTL_M_List"  minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="GTLP_Meth" maxOccurs="unbounded">
+											<xs:complexType>				
+												<xs:sequence>
+													<xs:element name="GTLP_M_Data" type="xs:string" />
+													<xs:element name="GTLP_M_Value" type="xs:string"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			  </xs:sequence>
+			</xs:complexType>    
+		  </xs:element>
+		  <xs:element name="HFCeS_COHORT_ID" type="xs:integer"/>
+		</xs:choice>
+		
+		<xs:element name="GT_Lic" type="xs:string"/>
+		
+		<xs:choice>  	  
+
+		  <xs:element name="METHOD">
+			<xs:complexType>
+			  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice minOccurs="1" maxOccurs="1">
+					<xs:element name="HH2016">
+						<xs:complexType>
+							<xs:choice>
+								<xs:element name="EM_ALGORITHM" type="xs:string" minOccurs="1"/>
+								<xs:element name="EM_VERSION" type="xs:string" minOccurs="1"/>
+								<xs:element name="EM_ALG_REF" type="xs:date" minOccurs="1"/>
+								<xs:element name="MAC_SERVICE" type="xs:string" minOccurs="1"/>
+								<xs:element name="MAC_SER_REF" type="xs:string" minOccurs="1"/>
+								<xs:element name="MAC_VERSION" type="xs:string" minOccurs="1"/>
+								<xs:element name="ARS_SERVICE" type="xs:string" minOccurs="1"/>
+								<xs:element name="ARS_SERV_REF" type="xs:string" minOccurs="1"/>
+								<xs:element name="ARS_VERSION" type="xs:string" minOccurs="1"/>
+								<xs:element name="HWE_METHOD" type="xs:string" minOccurs="1"/>
+								<xs:element name="HWE_REF" type="xs:string" minOccurs="1"/>
+								<xs:element name="LD_METHOD" type="xs:string" minOccurs="1"/>
+								<xs:element name="LD_METHOD_REF" type="xs:string" minOccurs="1"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>      
+				<xs:element name="METH_Comment" type="xs:string" minOccurs="0"/>
+				<xs:element name="METH_REF" type="xs:string" minOccurs="0"/>
+			  </xs:sequence>
+			</xs:complexType>
+		  </xs:element>
+
+		  <xs:element name="HFCeS_METHOD_ID" type="xs:integer"/>
+		</xs:choice>
+	
+      </xs:sequence>      
+    </xs:complexType>
+  </xs:element>      
+</xs:schema> 
